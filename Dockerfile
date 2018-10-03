@@ -14,7 +14,10 @@ RUN mv s3-linux-amd64 s3 && chmod +x s3 && mv s3 /usr/local/bin/s3
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
 
+COPY cron-job /etc/cron.d/cron-job
+
 # Execute cron
-ENTRYPOINT crontab /etc/cron.d/cron-job && cron
+ENTRYPOINT crontab /etc/cron.d/cron-job && cron && tail -f /dev/null
+
 # Run the command on container startup
 CMD tail -f /var/log/cron.log
