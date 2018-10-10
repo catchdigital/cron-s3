@@ -20,4 +20,4 @@ COPY cron-job /etc/cron.d/cron-job
 ENTRYPOINT crontab /etc/cron.d/cron-job && cron && tail -f /dev/null
 
 # Run the command on container startup
-CMD tail -f /var/log/cron.log
+# CMD tail -f /var/log/cron.log
